@@ -1,3 +1,4 @@
+// Package routes is the library for freedom-routes.
 package routes
 
 import (
@@ -19,6 +20,7 @@ var REMOTE_URL = "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"
 var LOCAL_PATH = "/etc/freedom-routes"
 
 type Ip struct {
+  // bar
   Ip string
   Cidr string
   Mask string
@@ -28,6 +30,7 @@ func (ip Ip) String() string {
   return fmt.Sprintf("%s/%s", ip.Ip, ip.Cidr)
 }
 
+// Generate result files from template.
 func Generate(templateName string, ips []Ip, outputDir string) {
   p, err := build.Default.Import("github.com/GutenYe/freedom-routes/routes", "", build.FindOnly)
   if err != nil { panic(err) }
@@ -57,6 +60,7 @@ func Generate(templateName string, ips []Ip, outputDir string) {
   }
 }
 
+// Fetch local ips and remote ips.
 func FetchIps() (ips []Ip) {
   ips = FetchLocalIps()
   ips = append(ips, FetchRemoteIps()...)
@@ -64,8 +68,12 @@ func FetchIps() (ips []Ip) {
   return ips
 }
 
-// apnic|CN|ipv4|1.94.0.0|131072|20100806|allocated
-// @return [ Ip, ..]
+// Fetch remote ips from REMOTE_URL.
+//
+// syntax:
+//
+//   apnic|CN|ipv4|1.94.0.0|131072|20100806|allocated
+//   ...
 func FetchRemoteIps() (ips []Ip) {
   println("Fetching latest ip data from apnic.net, this may take a few minutes, please wait...")
 
@@ -91,7 +99,11 @@ func FetchRemoteIps() (ips []Ip) {
   return ips
 }
 
-// syntax format
+
+// Fetch local ips from LOCAL_PATH.
+//
+// syntax:
+//
 //   70.33.217.25/32
 //   ...
 func FetchLocalIps() (ips []Ip) {
@@ -116,7 +128,11 @@ func FetchLocalIps() (ips []Ip) {
   return ips
 }
 
-// cidr2mask(24) -> "255.255.255.0"
+// Convert CIDR to Mask.
+// 
+// Example:
+//
+//   cidr2mask(24)       #-> "255.255.255.0"
 func cidr2mask(cidr int) string {
   mask := net.CIDRMask(cidr, 32)
   masks := []string{}
