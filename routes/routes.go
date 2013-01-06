@@ -20,7 +20,6 @@ var REMOTE_URL = "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"
 var LOCAL_PATH = "/etc/freedom-routes"
 
 type Ip struct {
-  // bar
   Ip string
   Cidr string
   Mask string
