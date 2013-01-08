@@ -14,6 +14,13 @@ Use ip data from APNIC to generate routes for vpn to make accessing websites in 
 Getting started
 ---------------
 
+Usage:
+
+	$ freedom-routes [options] <template>
+      -o, --output="."                 # output directory
+
+View avaliable templates at [here](https://github.com/GutenYe/freedom-routes/tree/master/routes/templates)
+
 Linux and Openvpn
 
 	$ freedom-routes linux -o /etc/openvpn 
