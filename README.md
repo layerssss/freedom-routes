@@ -33,6 +33,15 @@ Linux and Openvpn
 		up ./routes-up.sh
 		down ./routes-down.sh
 
+RouterOS
+
+	$ freedom-routes routeros
+
+* upload freedomroutes.rsc via winbox/WebConsole/ssh/ftp
+* get into your router terminal, type `/import freedomroutes.rsc`
+* add a default route with `routing-mark` set to `freedomroutes.domestic`
+* see `/ip route rule print` for more details..
+
 Others, see documentation at [here](https://github.com/GutenYe/chnroutes/blob/master/README.md) (Chinese)
 
 **Add IPs from local**
